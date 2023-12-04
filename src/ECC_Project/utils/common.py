@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from ECC_Project import logger
+from src.ECC_Project import logger
 import json
 import joblib
 from ensure import ensure_annotations
