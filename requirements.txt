@@ -1,15 +1,19 @@
+tensorflow
 pandas 
-mlflow==2.2.2
+gdown
+dvc
+mlflow
 notebook
 numpy
-scikit-learn
 matplotlib
-python-box==6.0.2
+seaborn
+python-box
 pyYAML
 tqdm
-ensure==1.0.2
+ensure
 joblib
 types-PyYAML
+scipy
 Flask
 Flask-Cors
 -e .

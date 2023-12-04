@@ -22,7 +22,7 @@ setuptools.setup(
     long_description_content="text/markdown",
     url=f"https://github.com/Dileepsaie/Engineering_Cloud_Computing_Project.git",
     project_urls={
-        "Bug Tracker": f"https://github.com/Dileepsaie/Engineering_Cloud_Computing_Project.git/issues",
+        "Bug Tracker": f"git@github.com:Dileepsaie/Engineering_Cloud_Computing_Project.git/issues",
     },
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src")
