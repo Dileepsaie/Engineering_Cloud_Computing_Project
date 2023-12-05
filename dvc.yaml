@@ -1,0 +1,54 @@
+stages:
+  data_ingestion:
+    cmd: python3 src/ECC_Project/components/data_ingestion.py
+    deps:
+      - src/ECC_Project/components/data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/INPUT
+
+
+  prepare_base_model:
+    cmd: python3 src/ECC_Project/components/prepare_model.py
+    deps:
+      - src/ECC_Project/components/prepare_model.py
+      - config/config.yaml
+    params:
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    outs:
+      - artifacts/prepare_base_model
+
+
+  training:
+    cmd: python3 src/ECC_Project/components/model_trainer.py
+    deps:
+      - src/ECC_Project/components/model_trainer.py
+      - config/config.yaml
+      - artifacts/data_ingestion/INPUT
+      - artifacts/prepare_base_model
+    params:
+      - IMAGE_SIZE
+      - EPOCHS
+      - BATCH_SIZE
+      - AUGMENTATION
+    outs:
+      - artifacts/training/model.h5
+
+
+  evaluation:
+    cmd: python src/ECC_Project/components/model_evaluation.py
+    deps:
+      - src/ECC_Project/components/model_evaluation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/INPUT
+      - artifacts/training/model.h5
+    params:
+      - IMAGE_SIZE
+      - BATCH_SIZE
+    metrics:
+    - scores.json:
+        cache: false
